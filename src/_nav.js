@@ -9,6 +9,12 @@ export default [
       text: 'NEW',
     },
   },
+    {
+    component: 'CNavItem',
+    name: 'Watch Dashboard',
+    to: '/watch-admin',
+    icon: 'cil-speedometer',
+  },
   {
     component: 'CNavTitle',
     name: 'Theme',

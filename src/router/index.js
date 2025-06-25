@@ -21,6 +21,11 @@ const routes = [
             /* webpackChunkName: "dashboard" */ '@/views/dashboard/Dashboard.vue'
           ),
       },
+            {
+        path: '/watch-admin',
+        name: 'Watch Admin',
+        component: () => import('@/views/watch/WatchDashboard.vue'),
+      },
       {
         path: '/theme',
         name: 'Theme',
