@@ -1,8 +1,9 @@
 <script setup>
 import { onBeforeMount } from 'vue'
 import { useColorModes } from '@coreui/vue'
-
 import { useThemeStore } from '@/stores/theme.js'
+import Sidebar from '@/components/AppSidebar.vue'
+import Topbar from '@/components/AppHeader.vue'
 
 const { isColorModeSet, setColorMode } = useColorModes(
   'coreui-free-vue-admin-template-theme',
@@ -22,21 +23,32 @@ onBeforeMount(() => {
     return
   }
 
-  if (isColorModeSet()) {
-    return
-  }
-
+  if (isColorModeSet()) return
   setColorMode(currentTheme.theme)
 })
 </script>
 
 <template>
-  <router-view />
+  <div class="admin-layout">
+    <Sidebar />
+    <div class="main-content">
+      <Topbar />
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
-// Import Main styles for this application
 @use 'styles/style';
-// We use those styles to show code examples, you should remove them in your application.
 @use 'styles/examples';
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+
+  .main-content {
+    flex-grow: 1;
+    padding: 1rem;
+  }
+}
 </style>
