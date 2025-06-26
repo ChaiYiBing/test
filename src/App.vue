@@ -5,6 +5,23 @@ import { useThemeStore } from '@/stores/theme.js'
 import Sidebar from '@/components/AppSidebar.vue'
 import Topbar from '@/components/AppHeader.vue'
 
+// Firebase Firestore Imports
+import { db } from '@/firebase' // <-- Make sure the path is correct
+import { collection, addDoc } from 'firebase/firestore'
+
+// Firebase Test Function: Add a test user
+const addTestUser = async () => {
+  try {
+    await addDoc(collection(db, "users"), {
+      name: "Test User",
+      age: 30
+    })
+    console.log("User added to Firestore.")
+  } catch (err) {
+    console.error("Error adding user:", err)
+  }
+}
+
 const { isColorModeSet, setColorMode } = useColorModes(
   'coreui-free-vue-admin-template-theme',
 )
@@ -25,30 +42,8 @@ onBeforeMount(() => {
 
   if (isColorModeSet()) return
   setColorMode(currentTheme.theme)
+
+  // Call Firestore test function
+  addTestUser()
 })
 </script>
-
-<template>
-  <div class="admin-layout">
-    <Sidebar />
-    <div class="main-content">
-      <Topbar />
-      <router-view />
-    </div>
-  </div>
-</template>
-
-<style lang="scss">
-@use 'styles/style';
-@use 'styles/examples';
-
-.admin-layout {
-  display: flex;
-  min-height: 100vh;
-
-  .main-content {
-    flex-grow: 1;
-    padding: 1rem;
-  }
-}
-</style>
