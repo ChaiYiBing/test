@@ -14,6 +14,7 @@ const routes = [
       { path: '/products/:id', name: 'Edit Product', component: () => import('@/views/products/ProductForm.vue'), props: true },
       { path: '/orders', name: 'Order List', component: () => import('@/views/orders/OrderList.vue') },
       { path: '/users', name: 'User List', component: () => import('@/views/users/UserList.vue') },
+      { path: '/users/create', name: 'Add User', component: () => import('@/views/users/UserForm.vue') },
       { path: '/settings', name: 'Settings', component: () => import('@/views/Settings.vue') },
     ],
   },
